@@ -223,7 +223,7 @@ Well releases are coming thick and fast, theres been two big releases in October
 
 You can check out [deno.land](https://deno.land) to learn more. And the [deno Github repo](https://github.com/denoland/deno) to have a look into issues and PRs.
 
-Theres also the (slightly inevitable) (Awesome Deno)[https://github.com/denolib/awesome-deno] repo on github with a growing list of libraries, examples and tutorial.... how GOOD!
+Theres also the (slightly inevitable) [Awesome Deno](https://github.com/denolib/awesome-deno) repo on github with a growing list of libraries, examples and tutorial.... how GOOD!
 
 Deno also has this cute-ass mascot so... their is that
 
