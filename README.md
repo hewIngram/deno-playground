@@ -6,7 +6,7 @@ This is a collection of random Deno things originally presented at LNUG in Octob
 
 "A secure runtime for JavaScript and TypeScript built with V8, Rust, and Tokio"
 
-That's how @ry describes it, it fixes some of the problems with Node, pulling it back towards the browser in a bunch of ways and making it more declarative (less magic), more secure and other things.
+That's how Ryan Dahl (@ry) describes it, it fixes some of the problems with Node, pulling it back towards the browser in a bunch of ways and making it more declarative (less magic), more secure and other things.
 
 This fantastic video talks through Ryan's reasoning and aims for Deno... it's great
 
@@ -35,7 +35,7 @@ brew install deno
 If you want to do it some other way the [deno-install](https://github.com/denoland/deno_install) repo has a bunch of options for you
 
 
-### 👋 Obligatory hello world example
+## 👋 Obligatory hello world example
 
 `deno run helloWorld.ts`
 
@@ -43,8 +43,12 @@ You'll see the compile step run (if you rerun the same code it won't need to com
 
 Boom, you've just run your first thing in Deno. It wasn't that exciting... right? Patience!
 
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
-### 📦 Imports and packages
+## 📦 Imports and packages
 
 So import/export and using external packages are super common in JavaScript, Deno changes how this is done quite a lot. Managing packages in package.json is one of the bit changes 
 when it comes to Deno - there is no package.json (Ryan describes it as an unnecessary abstraction + nowadays it's filled with 'boilerplate noise'). Theres also the fact that we can just import
@@ -66,11 +70,19 @@ Running:
 `deno run modules.ts`
 
 You'll see the cli_spinners file be downloaded (as well as the files it requires), compilation and then the program will run.
-The packages from the web are cached indefinitely locally so theres no need to re-download them (although theres a flag you can pass for refetching).
+The packages from the web are cached indefinitely locally so theres no need to re-download them (although theres a flag you can pass for re-fetching).
 
-### 🔐 Security
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
-#### 🗂 File system
+## 🔐 Security
+
+&nbsp;
+&nbsp;
+
+### 🗂 File system
 
 So here is where it gets really interesting. By default node give the V8 engine access to loads of aspects of your system, binding a bunch of system calls into v8.
 Which is kind of super useful but... super insecure, V8 is a beautiful sandboxed environment and Node undoes all of that.
@@ -98,8 +110,10 @@ This runs the process with that permission set. You can also use the `--allow-wr
 What's also interesting here (in my opinion) is the way `writeFile` works. In node you'd import `fs` and do `fs.writeFile()`. Now this is fine but... it looks like JavaScript and... well it isn't. It's node.
 Deno's `Deno.writeFile()` is a really nice (possibly completely unintentional) way of calling out the line between JavaScript and Deno which... feels nice.
 
+&nbsp;
+&nbsp;
 
-#### 🕸 Network
+### 🕸 Network
 
 The same kind of thing exists for network access, `http.ts` contains a pretty boring example. But running it with:
 
@@ -122,15 +136,22 @@ Theres a bunch of different allow flags we can use:
 --allow-write=<allow-write>    Allow file system write access
 ```
 
-The Deno api also includes methods for processes to de-escalate their own privelages, which is a nice touch.
+The Deno api also includes methods for processes to de-escalate their own privileges, which is a nice touch.
  There are still hanging questions, how do I manage complex permissions without just allowing loads of things. I guess we'll find out!
 
 #### How does Deno do this?
 
-The Deno process is privelaged, it can make system calls, the v8 vm it runs though is not, it can only communicate with the system via the Deno (using a protocolBuffer).
+The Deno process is privileged, it can make system calls, the v8 vm it runs though is not, it can only communicate with the system via the Deno (using a protocolBuffer).
+
+![Deno/v8 arrangement](./assets/Deno.png)
 
 
-### 💻 Http
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+## 💻 Http
 
 So... I think it's safe to say that lots of Node.js is used to run web servers so lets look at how we can do that in Deno. Node packages won't work with Deno so... there is unsurprisingly a slew of
 frameworks popping up for Deno that look a lot like Koa, Express and even Sinatra. We'll use one of this, Pogo, to spin up a basic server.
@@ -159,6 +180,12 @@ Ryan Dahl is quite open about not caring or wanting to back support Node, his vi
 
 
 
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+
 ## Erm...
 
 ![So what....](./assets/soWhat.gif)
@@ -167,7 +194,7 @@ So what's the pointing in looking at an extremely early stage, not at all produc
 I recently looked back and the first line of Javascript I ever wrote, in 2009, was Node, I've totally come to just take a load of things about it for granted (and like totally use index.js and the fuzzy import statement 
 to be lazy). The added declarativeness about Deno I really like (I have when 'magic' happens in code... I don't really want to have to remember all that stuff).
 
-I'm intruiged to see where it goes, I'm super interested to follow the progress and peek in at the architectural decisions are made - I'm probably not ever going to build a Javascript runtime but the decisions people make are always super interesting (and Ryan knows what he's doing).
+I'm intrigued to see where it goes, I'm super interested to follow the progress and peek in at the architectural decisions are made - I'm probably not ever going to build a Javascript runtime but the decisions people make are always super interesting (and Ryan knows what he's doing).
 
 Theres also tonnes of opportunity to contribute, both to Deno and to the growing library of packages available for it (which is COOL).
 
